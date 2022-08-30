@@ -1,30 +1,104 @@
 # Currencyapi
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/currencyapi`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+## Accuracy
+
+Please see [https://github.com/josscrowcroft/open-exchange-rates#accuracy](https://github.com/josscrowcroft/open-exchange-rates#accuracy)
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Add this line to your application's Gemfile:
 
-    $ bundle add currencyapi
+    gem 'currencyapi'
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
 
     $ gem install currencyapi
 
-## Usage
+## Configuration
 
-TODO: Write usage instructions here
+You will need your apikey to use Currencyapi, you can get one [here](https://app.currencyapi.com/register).
 
-## Development
+    Currencyapi.configure do |config|
+      config.apikey = 'YOUR-API-KEY'
+    end
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+If you are using Rails good place to add this is config/initializers/currencyapi.rb
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Usage & Endpoints
+
+
+#### Currencies
+Returns all our supported currencies
+
+    Currencyapi::Endpoints.currencies(currencies)
+
+  | Parameter | Data type | Mandatory | Description |
+  | --- | ----------- | --- | ----------- |
+  | currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+
+
+#### Latest Exchange Rates
+Returns the latest exchange rates. The default base currency is USD.
+
+    Currencyapi::Endpoints.latest(base_currency, currencies)    
+
+| Parameter | Data type | Mandatory | Description |
+| --- | ----------- | --- | ----------- |
+| base_currency | string | no | By default all values are based on USD |
+| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+
+#### Historical Exchange Rates
+Returns the latest exchange rates. The default base currency is USD.
+
+    Currencyapi::Endpoints.historical(date, base_currency, currencies)    
+
+| Parameter | Data type | Mandatory | Description |
+| --- | ----------- | --- | ----------- |
+| date | string | yes | Date to retrieve historical rates from (format: 2021-12-31) |
+| base_currency | string | no | By default all values are based on USD |
+| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+
+
+#### Range Historical Exchange Rates
+Returns a range of exchange rates. Generally, we provide data going back to 1999.
+
+    Currencyapi::Endpoints.range(datetime_start, datetime_end, accuracy, baseCurrency, currencies)    
+
+| Parameter | Data type | Mandatory | Description |
+| --- | ----------- | --- | ----------- |
+| datetime_start | string | yes | Datetime for the start of your requested range (format: 2021-12-31T23:59:59Z / ISO8601 Datetime)
+| datetime_end | string | yes | Datetime for the start of your requested range (format: 2021-12-31T23:59:59Z / ISO8601 Datetime) |
+| accuracy | string | yes | The accuracy you want to receive. |
+| base_currency | string | no | By default all values are based on USD |
+| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+
+
+#### Convert Exchange Rates
+Returns calculated values for today or any given date for all currencies.
+
+    Currencyapi::Endpoints.convert(value, date, baseCurrency, currencies)
+
+| Parameter | Data type | Mandatory | Description |
+| --- | ----------- | --- | ----------- |
+| value | string | yes | The value you want to convert |
+| date | string | yes | Date to retrieve historical rates from (format: 2021-12-31) |
+| base_currency | string | no | By default all values are based on USD |
+| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+
 
 ## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/currencyapi. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/currencyapi/blob/master/CODE_OF_CONDUCT.md).
 
