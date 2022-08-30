@@ -1,10 +1,5 @@
 # Currencyapi
 
-
-## Accuracy
-
-Please see [https://github.com/josscrowcroft/open-exchange-rates#accuracy](https://github.com/josscrowcroft/open-exchange-rates#accuracy)
-
 ## Installation
 
 Add this line to your application's Gemfile:
