@@ -40,5 +40,4 @@ module Currencyapi
     JSON.parse(@result.body)
   end
 
-  private :callApi
 end
