@@ -33,6 +33,11 @@ If you are using Rails good place to add this is config/initializers/currencyapi
 ## Usage & Endpoints
 
 
+#### Status
+Returns your current quota
+
+    Currencyapi::Endpoints.status()
+
 #### Currencies
 Returns all our supported currencies
 
@@ -40,7 +45,9 @@ Returns all our supported currencies
 
   | Parameter | Data type | Mandatory | Description |
   | --- | ----------- | --- | ----------- |
-  | currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+  | currencies | string | no | A list of comma seperated currency codes which you want to get (EUR,USD,CAD). By default all available currencies will be shown |
+
+
 
 
 #### Latest Exchange Rates
@@ -50,8 +57,8 @@ Returns the latest exchange rates. The default base currency is USD.
 
 | Parameter | Data type | Mandatory | Description |
 | --- | ----------- | --- | ----------- |
-| base_currency | string | no | By default all values are based on USD |
-| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+| base_currency | string | no | By default all values are based on USD. By default all values are based on USD |
+| currencies | string | no | A list of comma seperated currency codes which you want to get (EUR,USD,CAD). By default all available currencies will be shown |
 
 #### Historical Exchange Rates
 Returns the latest exchange rates. The default base currency is USD.
@@ -61,8 +68,8 @@ Returns the latest exchange rates. The default base currency is USD.
 | Parameter | Data type | Mandatory | Description |
 | --- | ----------- | --- | ----------- |
 | date | string | yes | Date to retrieve historical rates from (format: 2021-12-31) |
-| base_currency | string | no | By default all values are based on USD |
-| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+| base_currency | string | no | By default all values are based on USD. By default all values are based on USD |
+| currencies | string | no | A list of comma seperated currency codes which you want to get (EUR,USD,CAD). By default all available currencies will be shown |
 
 
 #### Range Historical Exchange Rates
@@ -74,9 +81,9 @@ Returns a range of exchange rates. Generally, we provide data going back to 1999
 | --- | ----------- | --- | ----------- |
 | datetime_start | string | yes | Datetime for the start of your requested range (format: 2021-12-31T23:59:59Z / ISO8601 Datetime)
 | datetime_end | string | yes | Datetime for the start of your requested range (format: 2021-12-31T23:59:59Z / ISO8601 Datetime) |
-| accuracy | string | yes | The accuracy you want to receive. |
-| base_currency | string | no | By default all values are based on USD |
-| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+| accuracy | string | no | The accuracy you want to receive. Possible Values: day, hour, quarter_hour, minute Default: day For valid time ranges see below |
+| base_currency | string | no | By default all values are based on USD. By default all values are based on USD |
+| currencies | string | no | A list of comma seperated currency codes which you want to get (EUR,USD,CAD). By default all available currencies will be shown |
 
 
 #### Convert Exchange Rates
@@ -87,9 +94,9 @@ Returns calculated values for today or any given date for all currencies.
 | Parameter | Data type | Mandatory | Description |
 | --- | ----------- | --- | ----------- |
 | value | string | yes | The value you want to convert |
-| date | string | yes | Date to retrieve historical rates from (format: 2021-12-31) |
-| base_currency | string | no | By default all values are based on USD |
-| currencies | string | yes | A list of comma seperated currency codes which you want to get (EUR,USD,CAD) |
+| date | string | no | Date to retrieve historical rates from (format: 2021-12-31) |
+| base_currency | string | no | By default all values are based on USD. By default all values are based on USD |
+| currencies | string | no | A list of comma seperated currency codes which you want to get (EUR,USD,CAD). By default all available currencies will be shown |
 
 
 ## Contributing

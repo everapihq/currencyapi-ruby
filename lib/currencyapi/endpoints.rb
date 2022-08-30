@@ -1,6 +1,11 @@
 module Currencyapi
 
   class Endpoints
+
+    def self.status()
+      @result = callApi('status')
+    end
+
     def self.currencies(currencies)
       @result = callApi(sprintf('currencies?currencies=%s', currencies))
     end
