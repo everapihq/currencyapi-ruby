@@ -1,36 +1,39 @@
 module Currencyapi
-
   class Endpoints
 
-    def self.status()
-      @result = callApi('status')
+    attr_writer :apikey
+
+    def initialize(options = {})
+      @apikey = options[:apikey] || Currencyapi.configuration.apikey
     end
 
-    def self.currencies(currencies)
-      @result = callApi(sprintf('currencies?currencies=%s', currencies))
+    def status()
+      @result = call_api('status')
     end
 
-    def self.latest(baseCurrency, currencies)
-      @result = callApi(sprintf('latest?base_currency=%s&currencies=%s', baseCurrency, currencies))
+    def currencies(currencies = '')
+      @result = call_api(sprintf('currencies?currencies=%s', currencies))
     end
 
-    def self.historical(date, baseCurrency, currencies)
-      @result = callApi(sprintf('historical?date=%s&base_currency=%s&currencies=%s', date, baseCurrency, currencies))
+    def latest(baseCurrency = 'USD', currencies = '')
+      @result = call_api(sprintf('latest?base_currency=%s&currencies=%s', baseCurrency, currencies))
     end
 
-    def self.range(datetime_start, datetime_end, accuracy, baseCurrency, currencies)
-      @result = callApi(sprintf('range?datetime_start=%s&datetime_end=%s&accuracy=%s&base_currency=%s&currencies=%s', datetime_start, datetime_end, accuracy, baseCurrency, currencies))
+    def historical(date, baseCurrency = 'USD', currencies = '')
+      @result = call_api(sprintf('historical?date=%s&base_currency=%s&currencies=%s', date, baseCurrency, currencies))
     end
 
-    def self.convert(value, date, baseCurrency, currencies)
-      @result = callApi(sprintf('convert?value=%s&date=%s&base_currency=%s&currencies=%s', value, date, baseCurrency, currencies))
+    def range(datetime_start, datetime_end, accuracy = 'day', baseCurrency = 'USD', currencies = '')
+      @result = call_api(sprintf('range?datetime_start=%s&datetime_end=%s&accuracy=%s&base_currency=%s&currencies=%s', datetime_start, datetime_end, accuracy, baseCurrency, currencies))
     end
 
-    def self.callApi(route)
-      # @full_route = sprintf('%s%s&apikey=%s', BASE_URL, route, @apikey)
+    def convert(value, date = '', baseCurrency = 'USD', currencies = '')
+      @result = call_api(sprintf('convert?value=%s&date=%s&base_currency=%s&currencies=%s', value, date, baseCurrency, currencies))
+    end
 
+    def call_api(route)
       begin
-        @response = RestClient.get "#{Currencyapi::BASE_URL}#{route}&apikey=#{Currencyapi.configuration.apikey}", { 'Accept' => 'application/json' }
+        @response = RestClient.get "#{Currencyapi::BASE_URL}#{route}&apikey=#{@apikey}", { 'Accept' => 'application/json' }
       rescue RestClient::ExceptionWithResponse => e
         @data = e.response
       end

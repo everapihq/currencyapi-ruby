@@ -18,37 +18,33 @@ Or install it yourself as:
 
 You will need your apikey to use Currencyapi, you can get one [here](https://app.currencyapi.com/register).
 
-    Currencyapi.configure do |config|
-      config.apikey = 'YOUR-API-KEY'
-    end
+Create an instance and pass your api key like here:
 
-If you are using Rails good place to add this is config/initializers/currencyapi.rb
-
+    fx = Currencyapi::Endpoints.new(:apikey => 'APIKEY')
 
 ## Usage & Endpoints
 
+Use the instance to call the endpoints
 
 #### Status
 Returns your current quota
 
-    Currencyapi::Endpoints.status()
+    fx.status()
 
 #### Currencies
 Returns all our supported currencies
 
-    Currencyapi::Endpoints.currencies(currencies)
+    fx.currencies(currencies)
 
   | Parameter | Data type | Mandatory | Description |
   | --- | ----------- | --- | ----------- |
   | currencies | string | no | A list of comma seperated currency codes which you want to get (EUR,USD,CAD). By default all available currencies will be shown |
 
 
-
-
 #### Latest Exchange Rates
 Returns the latest exchange rates. The default base currency is USD.
 
-    Currencyapi::Endpoints.latest(base_currency, currencies)    
+    fx.latest(base_currency, currencies)    
 
 | Parameter | Data type | Mandatory | Description |
 | --- | ----------- | --- | ----------- |
@@ -58,7 +54,7 @@ Returns the latest exchange rates. The default base currency is USD.
 #### Historical Exchange Rates
 Returns the latest exchange rates. The default base currency is USD.
 
-    Currencyapi::Endpoints.historical(date, base_currency, currencies)    
+    fx.historical(date, base_currency, currencies)    
 
 | Parameter | Data type | Mandatory | Description |
 | --- | ----------- | --- | ----------- |
@@ -70,7 +66,7 @@ Returns the latest exchange rates. The default base currency is USD.
 #### Range Historical Exchange Rates
 Returns a range of exchange rates. Generally, we provide data going back to 1999.
 
-    Currencyapi::Endpoints.range(datetime_start, datetime_end, accuracy, baseCurrency, currencies)    
+    fx.range(datetime_start, datetime_end, accuracy, baseCurrency, currencies)    
 
 | Parameter | Data type | Mandatory | Description |
 | --- | ----------- | --- | ----------- |
@@ -84,7 +80,7 @@ Returns a range of exchange rates. Generally, we provide data going back to 1999
 #### Convert Exchange Rates
 Returns calculated values for today or any given date for all currencies.
 
-    Currencyapi::Endpoints.convert(value, date, baseCurrency, currencies)
+    fx.convert(value, date, baseCurrency, currencies)
 
 | Parameter | Data type | Mandatory | Description |
 | --- | ----------- | --- | ----------- |

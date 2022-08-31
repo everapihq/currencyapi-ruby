@@ -18,8 +18,3 @@ module Currencyapi
     yield(configuration)
   end
 end
-
-# Default configuration
-Currencyapi.configure do |config|
-  config.apikey = ENV['CURRENCYAPI_APIKEY']
-end
