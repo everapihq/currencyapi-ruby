@@ -1,4 +1,12 @@
-# Currencyapi
+<p align="center">
+<img src="https://app.currencyapi.com/img/logo/currencyapi.png" width="300"/>
+</p>
+
+# currencyapi-ruby
+
+currencyapi-ruby is the official Ruby Wrapper around the [currencyapi](https://app.currencyapi.com).
+
+
 
 ## Installation
 
@@ -16,7 +24,7 @@ Or install it yourself as:
 
 ## Configuration
 
-You will need your apikey to use Currencyapi, you can get one [here](https://app.currencyapi.com/register).
+You will need your apikey to use Currencyapi, you can get one [https://app.currencyapi.com/register](https://app.currencyapi.com/register).
 
 Create an instance and pass your api key like here:
 
@@ -90,6 +98,8 @@ Returns calculated values for today or any given date for all currencies.
 | currencies | string | no | A list of comma seperated currency codes which you want to get (EUR,USD,CAD). By default all available currencies will be shown |
 
 
+You can find further information on https://currencyapi.com/docs/
+
 ## Contributing
 
 1. Fork it
@@ -98,7 +108,7 @@ Returns calculated values for today or any given date for all currencies.
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/currencyapi. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/currencyapi/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/everapihq/currencyapi. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/everapihq/currencyapi/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
