@@ -8,7 +8,7 @@ module Currencyapi
     end
 
     def status()
-      @result = call_api('status')
+      @result = call_api('status?type=quota')
     end
 
     def currencies(currencies = '')
