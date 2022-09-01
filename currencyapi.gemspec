@@ -8,8 +8,10 @@ Gem::Specification.new do |spec|
   spec.authors = ["Benedikt Stoy"]
   spec.email = ["benedikt.stoy@everapi.com"]
   spec.summary = "A ruby wrapper for currencyapi.com's API"
+  spec.description = "The perfect tool to handle your exchange rate conversions. Our API helps you with current and historical foreign exchanges rates. Stop worrying about uptime & outdated data."
   spec.homepage = "https://currencyapi.com/"
   spec.license = "MIT"
+  spec.extra_rdoc_files = ['README.md']
   spec.required_ruby_version = ">= 2.6.0"
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/everapihq/currencyapi-ruby"
